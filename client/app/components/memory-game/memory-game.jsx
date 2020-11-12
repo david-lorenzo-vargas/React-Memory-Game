@@ -45,17 +45,29 @@ class MemoryGame extends React.Component {
   }
 
   isSameCard() {
-    const { currentCard, previousCard, isClicked } = this.state;
+    const {
+      currentCard,
+      previousCard,
+      isClicked,
+    } = this.state;
+    const cardsFliped = [];
 
-    return !!((currentCard === previousCard) && isClicked);
+    const sameCard = !!((currentCard === previousCard) && isClicked);
+
+    if (sameCard) {
+      cardsFliped.push(currentCard);
+    }
+
+    return cardsFliped;
   }
 
   render() {
     console.log(this.state);
 
-    const { currentId, previousId } = this.state;
+    const { currentId, previousId, currentCard } = this.state;
     const sameCard = this.isSameCard();
-
+    const bothCardsFliped = sameCard.includes(currentCard);
+    console.log(bothCardsFliped);
     return (
       <div className={styles['memory-game']}>
         <Row>
@@ -64,9 +76,12 @@ class MemoryGame extends React.Component {
               <Column>
                 <div className={styles['memory-game__item']}>
                   <Card
-                    image={(currentId === item.id) && item.url}
+                    image={(currentId === item.id)
+                      || (previousId === item.id) ?
+                      item.url : ''}
                     name={item.name}
                     id={item.id}
+                    cardOrder={Math.floor(Math.random() * 20) + 1}
                     onClick={this.handleClick}
                   />
                 </div>
@@ -74,9 +89,12 @@ class MemoryGame extends React.Component {
               <Column>
                 <div className={styles['memory-game__item']}>
                   <Card
-                    image={((currentId === item.id || previousId === item.id) && sameCard) && item.url}
+                    image={(currentId === item.id + images.length)
+                      || (previousId === item.id + images.length) ?
+                      item.url : ''}
                     name={item.name}
                     id={item.id + images.length}
+                    cardOrder={Math.floor(Math.random() * 20) + 1}
                     onClick={this.handleClick}
                   />
                 </div>
