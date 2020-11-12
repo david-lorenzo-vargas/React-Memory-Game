@@ -67,6 +67,7 @@ class MemoryGame extends React.Component {
     const { currentId, previousId, currentCard } = this.state;
     const sameCard = this.isSameCard();
     const bothCardsFliped = sameCard.includes(currentCard);
+    const randomNumber = Math.floor(Math.random() * 20) + 1;
     console.log(bothCardsFliped);
     return (
       <div className={styles['memory-game']}>
@@ -81,7 +82,7 @@ class MemoryGame extends React.Component {
                       item.url : ''}
                     name={item.name}
                     id={item.id}
-                    cardOrder={Math.floor(Math.random() * 20) + 1}
+                    cardOrder={randomNumber}
                     onClick={this.handleClick}
                   />
                 </div>
@@ -94,7 +95,7 @@ class MemoryGame extends React.Component {
                       item.url : ''}
                     name={item.name}
                     id={item.id + images.length}
-                    cardOrder={Math.floor(Math.random() * 20) + 1}
+                    cardOrder={randomNumber}
                     onClick={this.handleClick}
                   />
                 </div>
