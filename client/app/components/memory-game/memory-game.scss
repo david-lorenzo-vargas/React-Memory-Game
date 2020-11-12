@@ -1,0 +1,11 @@
+.memory-game {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 15px;
+  background-color: #dbdbdb;
+  border-radius: 25px;
+
+  &__item {
+    margin: 10px;
+  }
+}
