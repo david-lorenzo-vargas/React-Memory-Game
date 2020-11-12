@@ -6,8 +6,8 @@ const Card = (props) => {
   const {
     image,
     name,
-    theme,
     id,
+    cardOrder,
     onClick,
   } = props;
 
@@ -15,10 +15,18 @@ const Card = (props) => {
     onClick(name, id);
   };
 
+  const cardOrderStyles = {
+    order: cardOrder,
+  };
+
   const glyph = backCard;
 
   return (
-    <div className={styles['card']} onClick={handleClick}>
+    <div
+      className={styles['card']}
+      onClick={handleClick}
+      style={cardOrderStyles}
+    >
       {image && id ?
         (<img src={image} alt="" />) :
         (<i className={styles['card__icon']} dangerouslySetInnerHTML={{ __html: glyph }} />)}
