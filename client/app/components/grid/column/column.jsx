@@ -7,14 +7,23 @@ import styles from './column.scss';
 const cx = classnames.bind(styles);
 
 const Column = (props) => {
-  const { children, grow, shrink } = props;
+  const {
+    children,
+    grow,
+    shrink,
+    cardOrder,
+  } = props;
 
   const classes = cx('grid-item', {
     'grid-item--grow': grow,
     'grid-item--shrink': shrink,
   });
 
-  return <div className={classes}>{children}</div>;
+  const cardOrderStyles = {
+    order: cardOrder,
+  };
+
+  return (<div className={classes} style={cardOrderStyles}>{children}</div>);
 };
 
 Column.propTypes = {
