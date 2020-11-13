@@ -13,7 +13,6 @@ class MemoryGame extends React.Component {
       currentId: 0,
       previousId: 0,
       previousCard: '',
-      isClicked: false,
       cardsFliped: [],
     };
 
@@ -41,7 +40,6 @@ class MemoryGame extends React.Component {
       newState = {
         currentCard: name,
         currentId: id,
-        isClicked: true,
       };
     }
 
@@ -51,7 +49,6 @@ class MemoryGame extends React.Component {
         currentId: id,
         previousId: currentId,
         previousCard: currentCard,
-        isClicked: true,
       };
     }
 
@@ -61,19 +58,18 @@ class MemoryGame extends React.Component {
         currentId: id,
         previousId: currentId,
         previousCard: currentCard,
-        isClicked: true,
         cardsFliped: [...cardsFliped, currentCard],
       };
     }
 
-    if (currentCard !== '' && previousCard !== '' && currentCard !== previousCard) {
-      newState = {
-        currentCard: '',
-        currentId: 0,
-        previousId: 0,
-        previousCard: '',
-      };
-    }
+    // if (currentCard !== '' && previousCard !== '' && currentCard !== previousCard) {
+    //   newState = {
+    //     currentCard: '',
+    //     currentId: 0,
+    //     previousId: 0,
+    //     previousCard: '',
+    //   };
+    // }
 
     this.setState(newState);
   }
