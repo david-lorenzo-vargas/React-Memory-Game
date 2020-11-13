@@ -1,0 +1,18 @@
+.button {
+  display: block;
+  cursor: pointer;
+  border-radius: 25px;
+  text-align: center;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  &--theme-blue {
+    background-color: #2e3047;
+    color: #fff;
+  }
+
+  &--size-medium {
+    width: 200px;
+  }
+}
