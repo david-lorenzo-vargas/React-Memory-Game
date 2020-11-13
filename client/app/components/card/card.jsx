@@ -15,17 +15,12 @@ const Card = (props) => {
     onClick(name, id);
   };
 
-  const cardOrderStyles = {
-    order: cardOrder,
-  };
-
   const glyph = backCard;
 
   return (
     <div
       className={styles['card']}
       onClick={handleClick}
-      style={cardOrderStyles}
     >
       {image && id ?
         (<img src={image} alt="" />) :
