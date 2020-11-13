@@ -66,6 +66,15 @@ class MemoryGame extends React.Component {
       };
     }
 
+    if (currentCard !== '' && previousCard !== '' && currentCard !== previousCard) {
+      newState = {
+        currentCard: '',
+        currentId: 0,
+        previousId: 0,
+        previousCard: '',
+      };
+    }
+
     this.setState(newState);
   }
 
