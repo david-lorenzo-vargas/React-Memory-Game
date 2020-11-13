@@ -7,6 +7,11 @@
   position: relative;
   cursor: pointer;
 
+  &:active {
+    transform: scale(1.2);
+    transition: transform .2s;
+  }
+
   &__icon {
     position: absolute;
     left: 50%;
