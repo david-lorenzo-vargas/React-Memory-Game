@@ -80,7 +80,7 @@ class MemoryGame extends React.Component {
         <Row>
           {images.map((item) => (
             <>
-              <Column>
+              <Column cardOrder={randomNumber}>
                 <div className={styles['memory-game__item']}>
                   <Card
                     image={(currentId === item.id)
@@ -89,12 +89,11 @@ class MemoryGame extends React.Component {
                       item.url : ''}
                     name={item.name}
                     id={item.id}
-                    cardOrder={randomNumber}
                     onClick={this.handleClick}
                   />
                 </div>
               </Column>
-              <Column>
+              <Column cardOrder={randomNumber}>
                 <div className={styles['memory-game__item']}>
                   <Card
                     image={(currentId === item.id + images.length)
@@ -103,7 +102,6 @@ class MemoryGame extends React.Component {
                       item.url : ''}
                     name={item.name}
                     id={item.id + images.length}
-                    cardOrder={randomNumber}
                     onClick={this.handleClick}
                   />
                 </div>
