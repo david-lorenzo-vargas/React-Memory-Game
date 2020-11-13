@@ -2,6 +2,7 @@ import React from 'react';
 import { Row, Column } from '../grid';
 import Card from '../card';
 import images from './memory-game.mock';
+import Button from '../button';
 import styles from './memory-game.scss';
 
 class MemoryGame extends React.Component {
@@ -17,6 +18,7 @@ class MemoryGame extends React.Component {
     };
 
     this.handleClick = this.handleClick.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   areBothCardsFliped(name) {
@@ -74,6 +76,16 @@ class MemoryGame extends React.Component {
     this.setState(newState);
   }
 
+  handleButtonClick() {
+    this.setState({
+      currentCard: '',
+      previousCard: '',
+      currentId: 0,
+      previousId: 0,
+      cardsFliped: [],
+    });
+  }
+
   render() {
     console.log(this.state);
 
@@ -113,6 +125,14 @@ class MemoryGame extends React.Component {
               </Column>
             </>
           ))}
+        </Row>
+        <Row>
+          <Button
+            text="play again"
+            theme="blue"
+            size="medium"
+            onClick={this.handleButtonClick}
+          />
         </Row>
       </div>
     );
