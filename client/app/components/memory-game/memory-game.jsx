@@ -14,13 +14,27 @@ class MemoryGame extends React.Component {
       previousId: 0,
       previousCard: '',
       isClicked: false,
+      cardsFliped: [],
     };
 
     this.handleClick = this.handleClick.bind(this);
   }
 
+  areBothCardsFliped(name) {
+    const { cardsFliped } = this.state;
+    const bothCardsFliped = cardsFliped.includes(name);
+
+    return bothCardsFliped;
+  }
+
   handleClick(name, id) {
-    const { currentCard, currentId } = this.state;
+    const {
+      currentCard,
+      previousCard,
+      currentId,
+      cardsFliped,
+    } = this.state;
+
     let newState;
 
     if (currentCard === '') {
@@ -31,7 +45,7 @@ class MemoryGame extends React.Component {
       };
     }
 
-    if (currentCard !== '') {
+    if (currentCard !== '' && currentCard !== previousCard) {
       newState = {
         currentCard: name,
         currentId: id,
@@ -41,34 +55,25 @@ class MemoryGame extends React.Component {
       };
     }
 
-    this.setState(newState);
-  }
-
-  isSameCard() {
-    const {
-      currentCard,
-      previousCard,
-      isClicked,
-    } = this.state;
-    const cardsFliped = [];
-
-    const sameCard = !!((currentCard === previousCard) && isClicked);
-
-    if (sameCard) {
-      cardsFliped.push(currentCard);
+    if (currentCard !== '' && currentCard === previousCard) {
+      newState = {
+        currentCard: '',
+        currentId: 0,
+        previousId: 0,
+        previousCard: '',
+        cardsFliped: [...cardsFliped, currentCard],
+      };
     }
 
-    return cardsFliped;
+    this.setState(newState);
   }
 
   render() {
     console.log(this.state);
 
-    const { currentId, previousId, currentCard } = this.state;
-    const sameCard = this.isSameCard();
-    const bothCardsFliped = sameCard.includes(currentCard);
+    const { currentId, previousId } = this.state;
     const randomNumber = Math.floor(Math.random() * 20) + 1;
-    console.log(bothCardsFliped);
+
     return (
       <div className={styles['memory-game']}>
         <Row>
@@ -78,7 +83,8 @@ class MemoryGame extends React.Component {
                 <div className={styles['memory-game__item']}>
                   <Card
                     image={(currentId === item.id)
-                      || (previousId === item.id) ?
+                      || (previousId === item.id)
+                      || this.areBothCardsFliped(item.name) ?
                       item.url : ''}
                     name={item.name}
                     id={item.id}
@@ -91,7 +97,8 @@ class MemoryGame extends React.Component {
                 <div className={styles['memory-game__item']}>
                   <Card
                     image={(currentId === item.id + images.length)
-                      || (previousId === item.id + images.length) ?
+                      || (previousId === item.id + images.length)
+                      || this.areBothCardsFliped(item.name) ?
                       item.url : ''}
                     name={item.name}
                     id={item.id + images.length}
