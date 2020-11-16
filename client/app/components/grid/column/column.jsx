@@ -11,7 +11,6 @@ const Column = (props) => {
     children,
     grow,
     shrink,
-    cardOrder,
   } = props;
 
   const classes = cx('grid-item', {
@@ -19,11 +18,7 @@ const Column = (props) => {
     'grid-item--shrink': shrink,
   });
 
-  const cardOrderStyles = {
-    order: cardOrder,
-  };
-
-  return (<div className={classes} style={cardOrderStyles}>{children}</div>);
+  return (<div className={classes}>{children}</div>);
 };
 
 Column.propTypes = {
