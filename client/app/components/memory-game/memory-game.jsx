@@ -115,13 +115,16 @@ class MemoryGame extends React.Component {
     return (
       <div className={styles['memory-game']}>
         <Text text="MEMORY GAME" theme="blue" size="big" />
-        {gameStarted === false ?
+        {!gameStarted ?
           <Row>
-          <Button text="START" theme="blue"
+          <Button
+            text="START"
+            theme="blue"
             size="medium"
-            onClick={this.handleStartButtonClick} />
+            onClick={this.handleStartButtonClick}
+          />
           </Row> :
-          <div>
+          <>
             <Row>
               {images.map((item) => (
                 <>
@@ -149,7 +152,7 @@ class MemoryGame extends React.Component {
               onClick={this.handlePlayAgainButtonClick}
             />
           </Row>
-        </div>}
+        </>}
       </div>
     );
   }
