@@ -10,33 +10,26 @@ class MemoryGame extends React.Component {
     super(props);
 
     this.state = {
-      allImages: [],
       currentCard: '',
       currentId: 0,
       previousId: 0,
       previousCard: '',
       cardsFliped: [],
+      gameStarted: false,
     };
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleCardClick = this.handleCardClick.bind(this);
+    this.handlePlayAgainButtonClick = this.handlePlayAgainButtonClick.bind(this);
+    this.handleStartButtonClick = this.handleStartButtonClick.bind(this)
   }
 
-  componentDidMount() {
-    const { allImages } = this.state;
-    const arrayOfImages = images;
-    const shuffledArray = this.shuffleCards(arrayOfImages);
-    const newArr = [...allImages, ...shuffledArray];
-
-    this.setState({
-      allImages: newArr,
-    });
-  }
-
-  shuffleCards(images) {
-    for (let i = images.length - 1; i > 0; i--) {
+  //Fisher–Yates shuffle algorithm =================
+  //==================================
+  shuffleCards() {
+    const array = images;
+    for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [images[i], images[j]] = [images[j], images[i]];
+      [array[i], array[j]] = [array[j], array[i]];
     }
   }
 
@@ -47,7 +40,7 @@ class MemoryGame extends React.Component {
     return bothCardsFliped;
   }
 
-  handleClick(name, id) {
+  handleCardClick(name, id) {
     const {
       currentCard,
       previousCard,
@@ -95,7 +88,8 @@ class MemoryGame extends React.Component {
     this.setState(newState);
   }
 
-  handleButtonClick() {
+  handlePlayAgainButtonClick() {
+    this.shuffleCards();
     this.setState({
       currentCard: '',
       previousCard: '',
@@ -105,55 +99,55 @@ class MemoryGame extends React.Component {
     });
   }
 
+  handleStartButtonClick() {
+    this.shuffleCards();
+    this.setState({
+      gameStarted: true,
+    })
+  }
+
   render() {
     console.log(this.state);
-    console.log(this.shuffleCards())
 
-    const { currentId, previousId, allImages } = this.state;
-    // const randomNumber = Math.floor(Math.random() * 20) + 1;
+    const { currentId, previousId, gameStarted } = this.state;
 
     return (
       <div className={styles['memory-game']}>
-        <Row>
-          {allImages.map((item) => (
-            <>
-              <Column>
-                <div className={styles['memory-game__item']}>
-                  <Card
-                    image={(currentId === item.id)
-                      || (previousId === item.id)
-                      || this.areBothCardsFliped(item.name) ?
-                      item.url : ''}
-                    name={item.name}
-                    id={item.id}
-                    onClick={this.handleClick}
-                  />
-                </div>
-              </Column>
-              {/* <Column>
-                <div className={styles['memory-game__item']}>
-                  <Card
-                    image={(currentId === item.id + images.length)
-                      || (previousId === item.id + images.length)
-                      || this.areBothCardsFliped(item.name) ?
-                      item.url : ''}
-                    name={item.name}
-                    id={item.id + images.length}
-                    onClick={this.handleClick}
-                  />
-                </div>
-              </Column> */}
-            </>
-          ))}
-        </Row>
-        <Row>
-          <Button
-            text="play again"
-            theme="blue"
+        {gameStarted === false ?
+          <Row>
+          <Button text="START" theme="blue"
             size="medium"
-            onClick={this.handleButtonClick}
-          />
-        </Row>
+            onClick={this.handleStartButtonClick} />
+          </Row> :
+          <div>
+            <Row>
+              {images.map((item) => (
+                <>
+                  <Column>
+                    <div className={styles['memory-game__item']}>
+                      <Card
+                        image={(currentId === item.id)
+                          || (previousId === item.id)
+                          || this.areBothCardsFliped(item.name) ?
+                          item.url : ''}
+                        name={item.name}
+                        id={item.id}
+                        onClick={this.handleCardClick}
+                      />
+                    </div>
+                  </Column>
+                </>
+              ))}
+            </Row>
+            <Row>
+            <Button
+              text="play again"
+              theme="blue"
+              size="medium"
+              onClick={this.handlePlayAgainButtonClick}
+            />
+          </Row>
+        </div>}
       </div>
     );
   }
