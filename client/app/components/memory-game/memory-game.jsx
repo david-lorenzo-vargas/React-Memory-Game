@@ -10,6 +10,7 @@ class MemoryGame extends React.Component {
     super(props);
 
     this.state = {
+      allImages: [],
       currentCard: '',
       currentId: 0,
       previousId: 0,
@@ -19,6 +20,24 @@ class MemoryGame extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
+
+  componentDidMount() {
+    const { allImages } = this.state;
+    const arrayOfImages = images;
+    const shuffledArray = this.shuffleCards(arrayOfImages);
+    const newArr = [...allImages, ...shuffledArray];
+
+    this.setState({
+      allImages: newArr,
+    });
+  }
+
+  shuffleCards(images) {
+    for (let i = images.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [images[i], images[j]] = [images[j], images[i]];
+    }
   }
 
   areBothCardsFliped(name) {
@@ -88,16 +107,17 @@ class MemoryGame extends React.Component {
 
   render() {
     console.log(this.state);
+    console.log(this.shuffleCards())
 
-    const { currentId, previousId } = this.state;
-    const randomNumber = Math.floor(Math.random() * 20) + 1;
+    const { currentId, previousId, allImages } = this.state;
+    // const randomNumber = Math.floor(Math.random() * 20) + 1;
 
     return (
       <div className={styles['memory-game']}>
         <Row>
-          {images.map((item) => (
+          {allImages.map((item) => (
             <>
-              <Column cardOrder={randomNumber}>
+              <Column>
                 <div className={styles['memory-game__item']}>
                   <Card
                     image={(currentId === item.id)
@@ -110,7 +130,7 @@ class MemoryGame extends React.Component {
                   />
                 </div>
               </Column>
-              <Column cardOrder={randomNumber}>
+              {/* <Column>
                 <div className={styles['memory-game__item']}>
                   <Card
                     image={(currentId === item.id + images.length)
@@ -122,7 +142,7 @@ class MemoryGame extends React.Component {
                     onClick={this.handleClick}
                   />
                 </div>
-              </Column>
+              </Column> */}
             </>
           ))}
         </Row>
