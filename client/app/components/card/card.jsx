@@ -7,7 +7,6 @@ const Card = (props) => {
     image,
     name,
     id,
-    cardOrder,
     onClick,
   } = props;
 
