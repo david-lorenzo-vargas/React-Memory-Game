@@ -21,7 +21,8 @@ class MemoryGame extends React.Component {
 
     this.handleCardClick = this.handleCardClick.bind(this);
     this.handlePlayAgainButtonClick = this.handlePlayAgainButtonClick.bind(this);
-    this.handleStartButtonClick = this.handleStartButtonClick.bind(this)
+    this.handleStartButtonClick = this.handleStartButtonClick.bind(this);
+    this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
   }
 
   //Fisher–Yates shuffle algorithm =================
@@ -51,14 +52,18 @@ class MemoryGame extends React.Component {
 
     let newState;
 
-    if (currentCard === '') {
+    if (!currentCard) {
       newState = {
         currentCard: name,
         currentId: id,
       };
     }
 
-    if (currentCard !== '' && currentCard !== previousCard) {
+    if (currentId === id) {
+      return;
+    }
+
+    if (currentCard && currentCard !== previousCard) {
       newState = {
         currentCard: name,
         currentId: id,
@@ -67,7 +72,7 @@ class MemoryGame extends React.Component {
       };
     }
 
-    if (currentCard !== '' && currentCard === previousCard) {
+    if (currentCard && currentCard === previousCard) {
       newState = {
         currentCard: name,
         currentId: id,
@@ -77,7 +82,7 @@ class MemoryGame extends React.Component {
       };
     }
 
-    if (currentCard !== '' && previousCard !== '' && currentCard !== previousCard) {
+    if (currentCard && previousCard && currentCard !== previousCard) {
       newState = {
         currentCard: name,
         currentId: id,
@@ -104,6 +109,18 @@ class MemoryGame extends React.Component {
     this.shuffleCards();
     this.setState({
       gameStarted: true,
+    })
+  }
+
+  handleBackButtonClick() {
+    this.shuffleCards();
+    this.setState({
+      currentCard: '',
+      previousCard: '',
+      currentId: 0,
+      previousId: 0,
+      cardsFliped: [],
+      gameStarted: false,
     })
   }
 
@@ -145,12 +162,26 @@ class MemoryGame extends React.Component {
               ))}
             </Row>
             <Row>
-            <Button
-              text="play again"
-              theme="blue"
-              size="medium"
-              onClick={this.handlePlayAgainButtonClick}
-            />
+            <Column>
+              <div className={styles['memory-game__item']}>
+                <Button
+                  text="BACK"
+                  theme="blue"
+                  size="medium"
+                  onClick={this.handleBackButtonClick}
+                />
+              </div>
+              </Column>
+              <Column>
+                <div className={styles['memory-game__item']}>
+                  <Button
+                  text="PLAY AGAIN"
+                  theme="blue"
+                  size="medium"
+                  onClick={this.handlePlayAgainButtonClick}
+                  />
+                </div>
+              </Column>
           </Row>
         </>}
       </div>
