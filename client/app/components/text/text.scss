@@ -1,0 +1,15 @@
+.text {
+  display: block;
+  text-align: center;
+  padding: 10px 25px;
+  text-transform: uppercase;
+  font-weight: bold;
+
+  &--theme-blue {
+    color: #2e3047;
+  }
+
+  &--size-big {
+    font-size: 50px;
+  }
+}
