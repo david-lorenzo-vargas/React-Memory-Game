@@ -18,6 +18,7 @@
         "react"
     ],
     "rules": {
+        "allowForLoopAfterthoughts": true,
         "arrow-parens": 0,
         "dot-notation": 0,
         "class-methods-use-this": 0,
