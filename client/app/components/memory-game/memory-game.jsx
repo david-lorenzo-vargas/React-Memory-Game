@@ -3,6 +3,7 @@ import { Row, Column } from '../grid';
 import Card from '../card';
 import images from './memory-game.mock';
 import Button from '../button';
+import Text from '../text';
 import styles from './memory-game.scss';
 
 class MemoryGame extends React.Component {
@@ -113,6 +114,7 @@ class MemoryGame extends React.Component {
 
     return (
       <div className={styles['memory-game']}>
+        <Text text="MEMORY GAME" theme="blue" size="big" />
         {gameStarted === false ?
           <Row>
           <Button text="START" theme="blue"
