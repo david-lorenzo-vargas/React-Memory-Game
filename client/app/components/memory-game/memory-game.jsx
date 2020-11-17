@@ -154,16 +154,9 @@ class MemoryGame extends React.Component {
     })
   }
 
-  render() {
-    console.log(this.state);
-
-    const { currentId, previousId, gameStarted, imageArray } = this.state;
-
-    return (
-      <div className={styles['memory-game']}>
-        <Text text="MEMORY GAME" theme="blue" size="big" />
-        {!gameStarted ?
-        <>
+  createStartingWindow() {
+    return(
+      <>
           <Row>
             <div className={styles['memory-game__item']}>
               <Button
@@ -204,28 +197,13 @@ class MemoryGame extends React.Component {
               />
             </div>
           </Row>
-        </> :
-          <>
-            <Row>
-              {imageArray.map((item) => (
-                <>
-                  <Column>
-                    <div className={styles['memory-game__item']}>
-                      <Card
-                        image={(currentId === item.id)
-                          || (previousId === item.id)
-                          || this.areBothCardsFliped(item.name) ?
-                          item.url : ''}
-                        name={item.name}
-                        id={item.id}
-                        onClick={this.handleCardClick}
-                      />
-                    </div>
-                  </Column>
-                </>
-              ))}
-            </Row>
-            <>
+        </>
+    )
+  }
+
+  createGameFooter() {
+    return(
+      <>
               <Row>
                 <Column>
                     <div className={styles['memory-game__item']}>
@@ -249,6 +227,45 @@ class MemoryGame extends React.Component {
                   </Column>
               </Row>
             </>
+    )
+  }
+
+  render() {
+    console.log(this.state);
+
+    const { currentId, previousId, gameStarted, imageArray } = this.state;
+
+    return (
+      <div className={styles['memory-game']}>
+        <Text text="MEMORY GAME" theme="blue" size="big" />
+        {!gameStarted ?
+          this.createStartingWindow() :
+          <>
+            <Row>
+              {imageArray.map((item) => {
+                const image = (currentId === item.id)
+                || (previousId === item.id)
+                || this.areBothCardsFliped(item.name);
+
+                return(
+                  <>
+                  <Column>
+                    <div className={styles['memory-game__item']}>
+                      <Card
+                        image={ image ?
+                          item.url : ''}
+                        name={item.name}
+                        id={item.id}
+                        onClick={this.handleCardClick}
+                      />
+                    </div>
+                  </Column>
+                </>
+                )
+              }
+              )}
+            </Row>
+            {this.createGameFooter()}
           </>
         }
       </div>
