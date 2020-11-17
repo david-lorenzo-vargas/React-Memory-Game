@@ -7,6 +7,7 @@ const Button = (props) => {
     text,
     theme,
     size,
+    type,
     onClick,
   } = props;
 
@@ -22,6 +23,7 @@ const Button = (props) => {
       className={cx('button', {
         [`button--theme-${theme}`]: theme,
         [`button--size-${size}`]: size,
+        [`button--type-${type}`]: type,
       })}
     >
       <span>{text}</span>
