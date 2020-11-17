@@ -84,6 +84,8 @@ class MemoryGame extends React.Component {
 
     if (currentCard && currentCard === name) {
       newState = {
+        currentCard: '',
+        currentId: 0,
         cardsFliped: [...cardsFliped, name],
       };
     }
