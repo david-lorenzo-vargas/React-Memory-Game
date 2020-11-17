@@ -52,6 +52,26 @@ class MemoryGame extends React.Component {
     return bothCardsFliped;
   }
 
+  automaticFlip(name, currentCard, previousCard) {
+    const cardsNotMatching = ( name && previousCard !== currentCard );
+    console.log('hello')
+
+    if ( cardsNotMatching ) {
+      setTimeOut (() => {
+        this.setState({
+          currentCard: '',
+          previousCard: '',
+          currentId: 0,
+          previousId: 0,
+        });
+      }, 500);
+    }
+  }
+
+  componentWillUnmount() {
+    this.automaticFlip();
+  }
+
   handleCardClick(name, id) {
     const {
       currentCard,
@@ -90,13 +110,14 @@ class MemoryGame extends React.Component {
       };
     }
 
-    if (currentCard && previousCard && currentCard !== previousCard) {
+    if (currentCard && previousCard && name !== previousCard) {
       newState = {
         currentCard: name,
         currentId: id,
         previousId: 0,
         previousCard: '',
       };
+      // this.automaticFlip(name, currentCard, previousCard)
     }
 
     this.setState(newState);
