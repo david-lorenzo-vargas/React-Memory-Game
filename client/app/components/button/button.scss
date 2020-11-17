@@ -25,7 +25,23 @@
     width: 200px;
   }
 
-  &--type-select {
+  &--type-travel {
     background-color: #4ac24a;
+  }
+
+  &--type-animals {
+    background-color: #4ac24a;
+  }
+
+  &--type-start {
+    animation-name: flashing;
+    animation-duration: 900ms;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes flashing {
+    100% {transform: scale(1.2);;
+
+    }
   }
 }
