@@ -21,6 +21,7 @@ class MemoryGame extends React.Component {
       previousCard: '',
       cardsFliped: [],
       gameStarted: false,
+      buttonActive: false,
     };
 
     this.handleCardClick = this.handleCardClick.bind(this);
@@ -30,6 +31,7 @@ class MemoryGame extends React.Component {
     this.handleMiscelaneusButtonClick = this.handleMiscelaneusButtonClick.bind(this);
     this.handleAnimalButtonClick = this.handleAnimalButtonClick.bind(this);
     this.handleFoodButtonClick = this.handleFoodButtonClick.bind(this);
+    this.handleStartButtonClick = this.handleStartButtonClick.bind(this);
   }
 
   //Fisher–Yates shuffle algorithm =================
@@ -113,32 +115,39 @@ class MemoryGame extends React.Component {
     });
   }
 
-  handleTravelButtonClick() {
+  handleStartButtonClick() {
     this.shuffleCards();
     this.setState({
-      imageArray: travelImages,
       gameStarted: true,
+      buttonActive: false,
+    })
+  }
+
+  handleTravelButtonClick() {
+    this.setState({
+      imageArray: travelImages,
+      buttonActive: true,
     })
   }
 
   handleMiscelaneusButtonClick() {
     this.setState({
       imageArray: images,
-      gameStarted: true,
+      buttonActive: true,
     })
   }
 
   handleAnimalButtonClick() {
     this.setState({
       imageArray: animalImages,
-      gameStarted: true,
+      buttonActive: true,
     })
   }
 
   handleFoodButtonClick() {
     this.setState({
       imageArray: foodImages,
-      gameStarted: true,
+      buttonActive: true,
     })
   }
 
@@ -154,7 +163,7 @@ class MemoryGame extends React.Component {
     })
   }
 
-  createStartingWindow() {
+  createStartingWindow(buttonActive) {
     return(
       <>
           <Row>
@@ -163,6 +172,7 @@ class MemoryGame extends React.Component {
                 text="TRAVEL"
                 theme="blue"
                 size="medium"
+                type={buttonActive ? "select" : ''}
                 onClick={this.handleTravelButtonClick}
               />
             </div>
@@ -173,6 +183,7 @@ class MemoryGame extends React.Component {
                 text="ANIMALS"
                 theme="blue"
                 size="medium"
+                type={buttonActive ? "select" : ''}
                 onClick={this.handleAnimalButtonClick}
               />
             </div>
@@ -183,6 +194,7 @@ class MemoryGame extends React.Component {
                 text="FOOD"
                 theme="blue"
                 size="medium"
+                type={buttonActive ? "select" : ''}
                 onClick={this.handleFoodButtonClick}
               />
             </div>
@@ -193,7 +205,18 @@ class MemoryGame extends React.Component {
                 text="MISCELLANEOUS"
                 theme="blue"
                 size="medium"
+                type={buttonActive ? "select" : ''}
                 onClick={this.handleMiscelaneusButtonClick}
+              />
+            </div>
+          </Row>
+          <Row>
+            <div className={styles['memory-game__item']}>
+              <Button
+                text="START"
+                theme="blue"
+                size="medium"
+                onClick={buttonActive ? this.handleStartButtonClick : ''}
               />
             </div>
           </Row>
@@ -233,13 +256,13 @@ class MemoryGame extends React.Component {
   render() {
     console.log(this.state);
 
-    const { currentId, previousId, gameStarted, imageArray } = this.state;
+    const { currentId, previousId, gameStarted, imageArray, buttonActive, } = this.state;
 
     return (
       <div className={styles['memory-game']}>
         <Text text="MEMORY GAME" theme="blue" size="big" />
         {!gameStarted ?
-          this.createStartingWindow() :
+          this.createStartingWindow(buttonActive) :
           <>
             <Row>
               {imageArray.map((item) => {
@@ -252,8 +275,7 @@ class MemoryGame extends React.Component {
                   <Column>
                     <div className={styles['memory-game__item']}>
                       <Card
-                        image={ image ?
-                          item.url : ''}
+                        image={ image ? item.url : ''}
                         name={item.name}
                         id={item.id}
                         onClick={this.handleCardClick}
