@@ -32,7 +32,7 @@ const animalImages = [
   {
     name: 'owl',
     id: 7,
-    url: 'https://images.unsplash.com/photo-1522120657009-060ca01afcd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=543&q=80',
+    url: 'https://images.unsplash.com/photo-1579264688258-c0ebf8c7942a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80',
   },
   {
     name: 'bee',
@@ -42,12 +42,12 @@ const animalImages = [
   {
     name: 'rhinos',
     id: 9,
-    url: 'https://images.unsplash.com/photo-1547970810-dc1eac37d174?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=548&q=80',
+    url: 'https://images.unsplash.com/flagged/photo-1557650454-65194af63bf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80',
   },
   {
     name: 'tucan',
     id: 10,
-    url: 'https://images.unsplash.com/photo-1558642369-043a801e48fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=518&q=80',
+    url: 'https://images.unsplash.com/photo-1530835073691-99f1d729027a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80',
   },
   {
     name: 'fish',
@@ -82,7 +82,7 @@ const animalImages = [
   {
     name: 'owl',
     id: 17,
-    url: 'https://images.unsplash.com/photo-1522120657009-060ca01afcd6?ixlib=rb-1.2.1&auto=format&fit=crop&w=543&q=80',
+    url: 'https://images.unsplash.com/photo-1579264688258-c0ebf8c7942a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80',
   },
   {
     name: 'bee',
@@ -92,12 +92,12 @@ const animalImages = [
   {
     name: 'rhinos',
     id: 19,
-    url: 'https://images.unsplash.com/photo-1547970810-dc1eac37d174?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=548&q=80',
+    url: 'https://images.unsplash.com/flagged/photo-1557650454-65194af63bf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80',
   },
   {
     name: 'tucan',
     id: 20,
-    url: 'https://images.unsplash.com/photo-1558642369-043a801e48fd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=518&q=80',
+    url: 'https://images.unsplash.com/photo-1530835073691-99f1d729027a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80',
   },
 ];
 
