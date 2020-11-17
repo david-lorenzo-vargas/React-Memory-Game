@@ -126,28 +126,28 @@ class MemoryGame extends React.Component {
   handleTravelButtonClick() {
     this.setState({
       imageArray: travelImages,
-      buttonActive: true,
+      buttonActive: 'travel',
     })
   }
 
   handleMiscelaneusButtonClick() {
     this.setState({
       imageArray: images,
-      buttonActive: true,
+      buttonActive: 'misce',
     })
   }
 
   handleAnimalButtonClick() {
     this.setState({
       imageArray: animalImages,
-      buttonActive: true,
+      buttonActive: 'animals',
     })
   }
 
   handleFoodButtonClick() {
     this.setState({
       imageArray: foodImages,
-      buttonActive: true,
+      buttonActive: 'food',
     })
   }
 
@@ -172,7 +172,7 @@ class MemoryGame extends React.Component {
                 text="TRAVEL"
                 theme="blue"
                 size="medium"
-                type={buttonActive ? "select" : ''}
+                type={buttonActive === 'travel' ? buttonActive : ''}
                 onClick={this.handleTravelButtonClick}
               />
             </div>
@@ -183,7 +183,7 @@ class MemoryGame extends React.Component {
                 text="ANIMALS"
                 theme="blue"
                 size="medium"
-                type={buttonActive ? "select" : ''}
+                type={buttonActive === 'animals' ? buttonActive : ''}
                 onClick={this.handleAnimalButtonClick}
               />
             </div>
@@ -194,7 +194,7 @@ class MemoryGame extends React.Component {
                 text="FOOD"
                 theme="blue"
                 size="medium"
-                type={buttonActive ? "select" : ''}
+                type={buttonActive === 'food' ? buttonActive : ''}
                 onClick={this.handleFoodButtonClick}
               />
             </div>
@@ -205,19 +205,21 @@ class MemoryGame extends React.Component {
                 text="MISCELLANEOUS"
                 theme="blue"
                 size="medium"
-                type={buttonActive ? "select" : ''}
+                type={buttonActive === 'misce' ? buttonActive : ''}
                 onClick={this.handleMiscelaneusButtonClick}
               />
             </div>
           </Row>
           <Row>
             <div className={styles['memory-game__item']}>
-              <Button
-                text="START"
-                theme="blue"
-                size="medium"
-                onClick={buttonActive ? this.handleStartButtonClick : ''}
-              />
+              {buttonActive ?
+                <Button
+                  text="START"
+                  theme="blue"
+                  size="medium"
+                  type="start"
+                  onClick={this.handleStartButtonClick}
+                /> : ''}
             </div>
           </Row>
         </>
