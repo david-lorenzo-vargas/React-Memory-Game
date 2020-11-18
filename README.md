@@ -9,3 +9,6 @@ Select a topic
 
 The game started
 ![memory-game-cards](https://user-images.githubusercontent.com/72414745/99594274-3fda6080-29f3-11eb-8850-25a581474e6a.JPG)
+
+Good luck!
+![memory-game-playing](https://user-images.githubusercontent.com/72414745/99594380-6a2c1e00-29f3-11eb-8681-3da6192fe3ba.JPG)
