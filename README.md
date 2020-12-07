@@ -8,7 +8,7 @@ Choose the topic that you want to play with, once you have chosen a topic press 
 You win the game, once you have found all the pairs. Once you finish, you can click the button PLAY AGAIN to play again o the button BACK to go back to the first page and choose a new topic to play with.
 
 ## Technologies
-HTML, SCSS modules, @keyframes, React, SVG, Fisher–Yates shuffle algorithm, Babel, Eslint, Stylelint, Webpack
+HTML, SCSS modules, @keyframes, JavaScript, React, SVG, Fisher–Yates shuffle algorithm, Babel, Eslint, Stylelint, Webpack
 
 ## Demo
 
